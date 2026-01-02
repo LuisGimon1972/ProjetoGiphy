@@ -16,7 +16,9 @@
       <div class="painel-esquerdo" style="width: 16%; padding: 25px">
         <q-item
           clickable
-          :class="{ 'menu-ativo': menuAtivo === 'home' }"
+          v-ripple
+          :active="menuAtivo === 'home'"
+          active-class="menu-ativo"
           @click="
             () => {
               exibirBusca()
@@ -25,13 +27,16 @@
           "
         >
           <q-item-section avatar>
-            <q-icon name="home_filled" />
+            <q-icon name="home_filled" class="menu-icon" />
           </q-item-section>
-          <q-item-section> Home </q-item-section>
+          <q-item-section>Home</q-item-section>
         </q-item>
+
         <q-item
           clickable
-          :class="{ 'menu-ativo': menuAtivo === 'favoritos' }"
+          v-ripple
+          :active="menuAtivo === 'favoritos'"
+          active-class="menu-ativo"
           @click="
             () => {
               favoritos()
@@ -40,13 +45,16 @@
           "
         >
           <q-item-section avatar>
-            <q-icon name="star_border" />
+            <q-icon name="people" class="menu-icon" />
           </q-item-section>
-          <q-item-section> Gifs Favoritos </q-item-section>
+          <q-item-section>GIFs Favoritos</q-item-section>
         </q-item>
+
         <q-item
           clickable
-          :class="{ 'menu-ativo': menuAtivo === 'categorias' }"
+          v-ripple
+          :active="menuAtivo === 'categorias'"
+          active-class="menu-ativo"
           @click="
             () => {
               categorias()
@@ -55,13 +63,16 @@
           "
         >
           <q-item-section avatar>
-            <q-icon name="category" />
+            <q-icon name="apps" class="menu-icon" />
           </q-item-section>
-          <q-item-section> Categorias </q-item-section>
+          <q-item-section>Categorias</q-item-section>
         </q-item>
+
         <q-item
           clickable
-          :class="{ 'menu-ativo': menuAtivo === 'sobre' }"
+          v-ripple
+          :active="menuAtivo === 'sobre'"
+          active-class="menu-ativo"
           @click="
             () => {
               sobre()
@@ -70,9 +81,9 @@
           "
         >
           <q-item-section avatar>
-            <q-icon name="person" />
+            <q-icon name="info_outline" class="menu-icon" />
           </q-item-section>
-          <q-item-section> Sobre o sistema</q-item-section>
+          <q-item-section>Sobre o sistema</q-item-section>
         </q-item>
       </div>
 

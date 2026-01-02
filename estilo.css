@@ -177,11 +177,18 @@ body {
 }
 
 .menu-ativo {
-  background-color: #1976d2 !important; /* azul */
-  color: white !important;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #ff4081;
+  font-weight: bold;
 }
 
-.menu-ativo .q-icon {
-  color: white !important;
+.menu-icon {
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
+}
+
+.menu-ativo .menu-icon {
+  color: #ff4081;
+  transform: scale(1.2);
 }
