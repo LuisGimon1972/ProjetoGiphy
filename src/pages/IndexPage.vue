@@ -244,36 +244,55 @@
   </div>
 </template>
 
-<script setup>
-// =====================
-// Imports
-// =====================
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
-
 import logo from 'src/assets/logo.png'
 import usuario from 'src/assets/usuario.png'
 
 // =====================
+// Interfaces TypeScript
+// =====================
+interface GifImage {
+  url: string
+}
+
+interface GifImages {
+  fixed_height: GifImage
+}
+
+export interface Gif {
+  id: string
+  title: string
+  images: GifImages
+}
+
+interface GiphyResponse {
+  data: Gif[]
+}
+
+// =====================
 // Constantes
 // =====================
-const apiKey = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
+const apiKey: string = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
 
 // =====================
 // Estado (Refs)
 // =====================
-const menuAtivo = ref(null)
-const titulo = ref('Home')
-const resultado = ref('')
-const termo = ref('')
-const gifs = ref([])
-const mostrarBusca = ref(true)
+const menuAtivo = ref<string | null>(null)
+const titulo = ref<string>('Home')
+const resultado = ref<string>('')
+const termo = ref<string>('')
 
-const favoritosList = ref([])
-const categoriaSelecionada = ref('')
-const historicoBuscas = ref([])
+const gifs = ref<Gif[]>([])
+const mostrarBusca = ref<boolean>(true)
 
-const categoriasList = ref([
+const favoritosList = ref<Gif[]>([])
+const categoriaSelecionada = ref<string>('')
+
+const historicoBuscas = ref<string[]>([])
+
+const categoriasList = ref<string[]>([
   // Pessoas & emoções
   'Pessoas',
   'Crianças',
@@ -318,7 +337,7 @@ const categoriasList = ref([
 // =====================
 // Navegação / UI
 // =====================
-function navegar(tituloPagina, exibirBuscaAtiva = false) {
+function navegar(tituloPagina: string, exibirBuscaAtiva = false): void {
   titulo.value = tituloPagina
   mostrarBusca.value = exibirBuscaAtiva
   resultado.value = ''
@@ -330,8 +349,8 @@ function navegar(tituloPagina, exibirBuscaAtiva = false) {
 // =====================
 // API / Busca de GIFs
 // =====================
-async function carregarTrending() {
-  const res = await axios.get('https://api.giphy.com/v1/gifs/trending', {
+async function carregarTrending(): Promise<void> {
+  const res = await axios.get<GiphyResponse>('https://api.giphy.com/v1/gifs/trending', {
     params: {
       api_key: apiKey,
       limit: 20,
@@ -341,7 +360,7 @@ async function carregarTrending() {
   gifs.value = res.data.data
 }
 
-async function buscarGifs() {
+async function buscarGifs(): Promise<void> {
   resultado.value = termo.value ? `Resultado para: "${termo.value}"` : 'GIFs em Alta'
 
   if (!termo.value) {
@@ -350,7 +369,7 @@ async function buscarGifs() {
 
   adicionarAoHistorico(termo.value)
 
-  const res = await axios.get('https://api.giphy.com/v1/gifs/search', {
+  const res = await axios.get<GiphyResponse>('https://api.giphy.com/v1/gifs/search', {
     params: {
       api_key: apiKey,
       q: termo.value,
@@ -361,13 +380,13 @@ async function buscarGifs() {
   gifs.value = res.data.data
 }
 
-async function buscarPorCategoria(nome) {
+async function buscarPorCategoria(nome: string): Promise<void> {
   categoriaSelecionada.value = nome
   titulo.value = 'Categorias'
   mostrarBusca.value = false
   resultado.value = `GIFs da categoria: "${nome}"`
 
-  const res = await axios.get('https://api.giphy.com/v1/gifs/search', {
+  const res = await axios.get<GiphyResponse>('https://api.giphy.com/v1/gifs/search', {
     params: {
       api_key: apiKey,
       q: nome,
@@ -378,11 +397,14 @@ async function buscarPorCategoria(nome) {
   gifs.value = res.data.data
 }
 
-function isFavorito(id) {
+// =====================
+// Favoritos
+// =====================
+function isFavorito(id: string): boolean {
   return favoritosList.value.some((g) => g.id === id)
 }
 
-function toggleFavorito(gif) {
+function toggleFavorito(gif: Gif): void {
   if (isFavorito(gif.id)) {
     favoritosList.value = favoritosList.value.filter((g) => g.id !== gif.id)
   } else {
@@ -392,19 +414,19 @@ function toggleFavorito(gif) {
   salvarFavoritos()
 }
 
-function salvarFavoritos() {
+function salvarFavoritos(): void {
   localStorage.setItem('meusFavoritos', JSON.stringify(favoritosList.value))
 }
 
-function carregarFavoritos() {
+function carregarFavoritos(): void {
   const salvos = localStorage.getItem('meusFavoritos')
-  favoritosList.value = salvos ? JSON.parse(salvos) : []
+  favoritosList.value = salvos ? (JSON.parse(salvos) as Gif[]) : []
 }
 
 // =====================
 // Histórico de buscas
 // =====================
-function adicionarAoHistorico(termoBusca) {
+function adicionarAoHistorico(termoBusca: string): void {
   if (!termoBusca) return
 
   historicoBuscas.value = historicoBuscas.value.filter((t) => t !== termoBusca)
@@ -418,25 +440,25 @@ function adicionarAoHistorico(termoBusca) {
   localStorage.setItem('historicoBuscas', JSON.stringify(historicoBuscas.value))
 }
 
-function carregarHistorico() {
+function carregarHistorico(): void {
   const salvos = localStorage.getItem('historicoBuscas')
-  historicoBuscas.value = salvos ? JSON.parse(salvos) : []
+  historicoBuscas.value = salvos ? (JSON.parse(salvos) as string[]) : []
 }
 
-function limparHistorico() {
+function limparHistorico(): void {
   historicoBuscas.value = []
   localStorage.removeItem('historicoBuscas')
 }
 
-function buscarTermoHistorico(termoBusca) {
+function buscarTermoHistorico(termoBusca: string): void {
   termo.value = termoBusca
   buscarGifs()
 }
 
 // =====================
-// Carregar módulos
+// Lifecycle
 // =====================
-onMounted(() => {
+onMounted((): void => {
   carregarFavoritos()
   carregarHistorico()
   navegar('Home', true)

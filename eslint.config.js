@@ -4,70 +4,72 @@ import pluginVue from 'eslint-plugin-vue'
 import pluginQuasar from '@quasar/app-vite/eslint'
 import prettierSkipFormatting from '@vue/eslint-config-prettier/skip-formatting'
 
+// ✅ IMPORTS CORRETOS DO TYPESCRIPT
+import tsParser from '@typescript-eslint/parser'
+import tsPlugin from '@typescript-eslint/eslint-plugin'
+
 export default [
   {
-    /**
-     * Ignore the following files.
-     * Please note that pluginQuasar.configs.recommended() already ignores
-     * the "node_modules" folder for you (and all other Quasar project
-     * relevant folders and files).
-     *
-     * ESLint requires "ignores" key to be the only one in this object
-     */
     // ignores: []
   },
 
   ...pluginQuasar.configs.recommended(),
   js.configs.recommended,
+  ...pluginVue.configs['flat/essential'],
 
-  /**
-   * https://eslint.vuejs.org
-   *
-   * pluginVue.configs.base
-   *   -> Settings and rules to enable correct ESLint parsing.
-   * pluginVue.configs[ 'flat/essential']
-   *   -> base, plus rules to prevent errors or unintended behavior.
-   * pluginVue.configs["flat/strongly-recommended"]
-   *   -> Above, plus rules to considerably improve code readability and/or dev experience.
-   * pluginVue.configs["flat/recommended"]
-   *   -> Above, plus rules to enforce subjective community defaults to ensure consistency.
-   */
-  ...pluginVue.configs[ 'flat/essential' ],
-
+  // ✅ SUPORTE A TYPESCRIPT EM .VUE
   {
+    files: ['**/*.vue'],
     languageOptions: {
-      ecmaVersion: 'latest',
-      sourceType: 'module',
-
+      parser: pluginVue.parser,
+      parserOptions: {
+        parser: tsParser,
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
       globals: {
         ...globals.browser,
-        ...globals.node, // SSR, Electron, config files
-        process: 'readonly', // process.env.*
-        ga: 'readonly', // Google Analytics
+        ...globals.node,
+        process: 'readonly',
+        ga: 'readonly',
         cordova: 'readonly',
         Capacitor: 'readonly',
-        chrome: 'readonly', // BEX related
-        browser: 'readonly' // BEX related
-      }
+        chrome: 'readonly',
+        browser: 'readonly',
+      },
     },
-
-    // add your custom rules here
+    plugins: {
+      '@typescript-eslint': tsPlugin,
+    },
     rules: {
-      'prefer-promise-reject-errors': 'off',
-
-      // allow debugger during development only
-      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
-    }
+      ...tsPlugin.configs.recommended.rules,
+    },
   },
 
   {
-    files: [ 'src-pwa/custom-service-worker.js' ],
-    languageOptions: {
-      globals: {
-        ...globals.serviceworker
-      }
-    }
+    rules: {
+      'prefer-promise-reject-errors': 'off',
+      'no-debugger': import.meta.env.PROD ? 'error' : 'off',
+    },
   },
 
-  prettierSkipFormatting
+  {
+    files: ['src-pwa/custom-service-worker.js'],
+    languageOptions: {
+      globals: {
+        ...globals.serviceworker,
+      },
+    },
+  },
+
+  {
+    files: ['src/router/**/*.js'],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+      },
+    },
+  },
+
+  prettierSkipFormatting,
 ]
