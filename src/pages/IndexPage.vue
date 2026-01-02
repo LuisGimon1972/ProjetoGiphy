@@ -65,7 +65,7 @@
           <q-item-section avatar>
             <q-icon name="apps" class="menu-icon" />
           </q-item-section>
-          <q-item-section>Categorias</q-item-section>
+          <q-item-section>GIFs por Categorias</q-item-section>
         </q-item>
 
         <q-item
@@ -102,17 +102,7 @@
               placeholder="Pesquisar GIFs..."
               style="padding: 8px; width: 100%; max-width: 400px; font-size: 16px"
             />
-            <button
-              @click="buscarGifs"
-              style="
-                margin-left: 10px;
-                padding: 8px 12px;
-                font-size: 16px;
-                background-color: rgb(128, 150, 229);
-              "
-            >
-              🔍
-            </button>
+            <q-btn flat color="primary" icon="search" size="lg" @click="buscarGifs" />
           </div>
 
           <!-- Histórico de buscas -->
