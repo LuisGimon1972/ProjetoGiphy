@@ -1,6 +1,5 @@
 ﻿<template>
   <div class="layout-principal">
-    <!-- CABEÇALHO -->
     <div class="painel-superior">
       <img :src="logo" alt="Logo" class="logo" />
       <label class="textonome">Master Giphy Sistemas</label>
@@ -10,9 +9,7 @@
       </div>
     </div>
 
-    <!-- CONTEÚDO -->
     <div class="layout-conteudo" style="display: flex; min-height: 80vh">
-      <!-- MENU LATERAL -->
       <div class="painel-esquerdo" style="width: 16%; padding: 25px">
         <q-item
           clickable
@@ -87,25 +84,26 @@
         </q-item>
       </div>
 
-      <!-- CONTEÚDO PRINCIPAL -->
       <div class="conteudo" style="flex-grow: 1; padding: 20px">
         <label class="titulo-superior">{{ titulo }}</label
         ><br /><br />
         <label class="resultado">{{ resultado }}</label>
 
-        <!-- HOME / BUSCA -->
         <div v-if="mostrarBusca">
-          <div style="margin-bottom: 20px">
-            <input
+          <div class="q-mb-md flex items-center gap-2">
+            <q-input
               v-model="termo"
+              outlined
+              dense
+              placeholder="Encontre o GIF perfeito..."
+              class="w-4/5"
+              style="width: 400px"
               @keyup.enter="buscarGifs"
-              placeholder="Pesquisar GIFs..."
-              style="padding: 8px; width: 100%; max-width: 400px; font-size: 16px"
             />
-            <q-btn flat color="primary" icon="search" size="lg" @click="buscarGifs" />
+
+            <q-btn flat round color="primary" icon="search" size="lg" @click="buscarGifs" />
           </div>
 
-          <!-- Histórico de buscas -->
           <div v-if="historicoBuscas.length" style="margin-bottom: 15px">
             <label style="font-weight: bold">Histórico de pesquisas:</label>
             <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px">
@@ -146,7 +144,6 @@
           </div>
         </div>
 
-        <!-- FAVORITOS -->
         <div v-else-if="titulo === 'Favoritos'">
           <div v-if="favoritosList.length === 0" class="mensagem-vazia">
             Nenhum GIF favorito foi adicionado.
@@ -161,7 +158,6 @@
           </div>
         </div>
 
-        <!-- CATEGORIAS -->
         <div v-else-if="titulo === 'Categorias'">
           <div v-if="!categoriaSelecionada">
             <p class="voltar-categorias">Selecione uma categoria:</p>
@@ -193,7 +189,6 @@
           </div>
         </div>
 
-        <!-- SOBRE -->
         <div v-else-if="titulo === 'Sobre'">
           <p style="text-align: justify; padding-left: 10px; font-size: 16px">
             SG Master GIFs Versão 1.00 é um aplicativo web desenvolvido pelo Dev. Luis Manuel Gimón
@@ -246,6 +241,7 @@ const gifs = ref([])
 const mostrarBusca = ref(true)
 const favoritosList = ref([])
 const categoriaSelecionada = ref('')
+const historicoBuscas = ref([])
 const categoriasList = ref([
   'Pessoas',
   'Personagens',
@@ -277,20 +273,6 @@ const categoriasList = ref([
   'Dançando',
 ])
 
-// Histórico de buscas
-const historicoBuscas = ref([])
-
-// Navegação entre seções
-function navegar(tituloPagina, exibirBuscaAtiva = false) {
-  titulo.value = tituloPagina
-  mostrarBusca.value = exibirBuscaAtiva
-  resultado.value = ''
-  gifs.value = []
-  termo.value = ''
-  categoriaSelecionada.value = ''
-}
-
-// Botões do menu
 function exibirBusca() {
   navegar('Home', true)
   carregarTrending()
@@ -308,9 +290,17 @@ function sobre() {
   navegar('Sobre')
 }
 
+function navegar(tituloPagina, exibirBuscaAtiva = false) {
+  titulo.value = tituloPagina
+  mostrarBusca.value = exibirBuscaAtiva
+  resultado.value = ''
+  gifs.value = []
+  termo.value = ''
+  categoriaSelecionada.value = ''
+}
+
 const apiKey = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
 
-// Carregamento de dados
 async function carregarTrending() {
   const res = await axios.get(`https://api.giphy.com/v1/gifs/trending`, {
     params: { api_key: apiKey, limit: 20 },
@@ -341,7 +331,6 @@ async function buscarPorCategoria(nome) {
   gifs.value = res.data.data
 }
 
-// Favoritos
 function isFavorito(id) {
   return favoritosList.value.some((g) => g.id === id)
 }
@@ -364,7 +353,6 @@ function carregarFavoritos() {
   favoritosList.value = salvos ? JSON.parse(salvos) : []
 }
 
-// Histórico de buscas com localStorage
 function adicionarAoHistorico(termoBusca) {
   if (!termoBusca) return
   historicoBuscas.value = historicoBuscas.value.filter((t) => t !== termoBusca)
