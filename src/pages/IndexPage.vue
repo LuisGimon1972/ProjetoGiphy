@@ -18,7 +18,8 @@
           active-class="menu-ativo"
           @click="
             () => {
-              exibirBusca()
+              navegar('Home', true)
+              carregarTrending()
               menuAtivo = 'home'
             }
           "
@@ -36,7 +37,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              favoritos()
+              navegar('Favoritos')
               menuAtivo = 'favoritos'
             }
           "
@@ -54,7 +55,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              categorias()
+              navegar('Categorias')
               menuAtivo = 'categorias'
             }
           "
@@ -72,7 +73,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              sobre()
+              navegar('Sobre')
               menuAtivo = 'sobre'
             }
           "
@@ -85,11 +86,14 @@
       </div>
 
       <div class="conteudo" style="flex-grow: 1; padding: 20px">
-        <label class="titulo-superior">{{ titulo }}</label
-        ><br /><br />
+        <br /><br />
         <label class="resultado">{{ resultado }}</label>
 
         <div v-if="mostrarBusca">
+          <div class="titulo-superior flex items-center gap-3">
+            <q-icon name="home_filled" size="32px" class="icone-titulo" />
+            <span>{{ titulo }}</span>
+          </div>
           <div class="q-mb-md flex items-center gap-2">
             <q-input
               v-model="termo"
@@ -145,6 +149,10 @@
         </div>
 
         <div v-else-if="titulo === 'Favoritos'">
+          <div class="titulo-superior flex items-center gap-3">
+            <q-icon name="people" size="32px" class="icone-titulo" />
+            <span>{{ titulo }}</span>
+          </div>
           <div v-if="favoritosList.length === 0" class="mensagem-vazia">
             Nenhum GIF favorito foi adicionado.
           </div>
@@ -159,6 +167,10 @@
         </div>
 
         <div v-else-if="titulo === 'Categorias'">
+          <div class="titulo-superior flex items-center gap-3">
+            <q-icon name="apps" size="32px" class="icone-titulo" />
+            <span>{{ titulo }}</span>
+          </div>
           <div v-if="!categoriaSelecionada">
             <p class="voltar-categorias">Selecione uma categoria:</p>
             <div style="display: flex; flex-wrap: wrap; gap: 10px">
@@ -190,6 +202,10 @@
         </div>
 
         <div v-else-if="titulo === 'Sobre'">
+          <div class="titulo-superior flex items-center gap-3">
+            <q-icon name="info_outline" size="32px" class="icone-titulo" />
+            <span>{{ titulo }}</span>
+          </div>
           <p style="text-align: justify; padding-left: 10px; font-size: 16px">
             SG Master GIFs Versão 1.00 é um aplicativo web desenvolvido pelo Dev. Luis Manuel Gimón
             Silva, da SGBR Sistemas, com o objetivo de criar uma experiência simples e agradável
@@ -229,67 +245,79 @@
 </template>
 
 <script setup>
-import logo from 'src/assets/logo.png'
-import usuario from 'src/assets/usuario.png'
+// =====================
+// Imports
+// =====================
 import { ref, onMounted } from 'vue'
 import axios from 'axios'
+
+import logo from 'src/assets/logo.png'
+import usuario from 'src/assets/usuario.png'
+
+// =====================
+// Constantes
+// =====================
+const apiKey = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
+
+// =====================
+// Estado (Refs)
+// =====================
 const menuAtivo = ref(null)
 const titulo = ref('Home')
 const resultado = ref('')
 const termo = ref('')
 const gifs = ref([])
 const mostrarBusca = ref(true)
+
 const favoritosList = ref([])
 const categoriaSelecionada = ref('')
 const historicoBuscas = ref([])
+
 const categoriasList = ref([
+  // Pessoas & emoções
   'Pessoas',
-  'Personagens',
   'Crianças',
   'Idosos',
-  'Aniversário',
+  'Reações',
   'Engraçados',
+  'Memes',
+  'Fofos',
+  'Surpresos',
+  'Dançando',
+
+  // Animais
   'Gatos',
   'Cachorros',
-  'Memes',
-  'Reações',
-  'Futebol',
+
+  // Cultura & entretenimento
+  'Personagens',
   'Filmes',
   'Anime',
   'Música',
   'Jogos',
-  'Saúde',
-  'Educação',
+  'Futebol',
+
+  // Datas & temas sociais
+  'Aniversário',
   'Religião',
   'Política',
   'Regional',
-  'Ciência',
   'Cultura',
-  'Tecnologia',
+
+  // Conhecimento & cotidiano
+  'Educação',
+  'Saúde',
+  'Ciência',
   'Trabalho',
+
+  // Tecnologia
+  'Tecnologia',
   'Devs',
-  'Fofos',
-  'Surpresos',
-  'Dançando',
 ])
 
-function exibirBusca() {
-  navegar('Home', true)
-  carregarTrending()
-}
-
-function favoritos() {
-  navegar('Favoritos')
-}
-
-function categorias() {
-  navegar('Categorias')
-}
-
-function sobre() {
-  navegar('Sobre')
-}
-
+// =====================
+// Navegação / UI
+// =====================
 function navegar(tituloPagina, exibirBuscaAtiva = false) {
   titulo.value = tituloPagina
   mostrarBusca.value = exibirBuscaAtiva
@@ -299,35 +327,54 @@ function navegar(tituloPagina, exibirBuscaAtiva = false) {
   categoriaSelecionada.value = ''
 }
 
-const apiKey = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
-
+// =====================
+// API / Busca de GIFs
+// =====================
 async function carregarTrending() {
-  const res = await axios.get(`https://api.giphy.com/v1/gifs/trending`, {
-    params: { api_key: apiKey, limit: 20 },
+  const res = await axios.get('https://api.giphy.com/v1/gifs/trending', {
+    params: {
+      api_key: apiKey,
+      limit: 20,
+    },
   })
+
   gifs.value = res.data.data
 }
 
 async function buscarGifs() {
   resultado.value = termo.value ? `Resultado para: "${termo.value}"` : 'GIFs em Alta'
-  if (!termo.value) return carregarTrending()
+
+  if (!termo.value) {
+    return carregarTrending()
+  }
 
   adicionarAoHistorico(termo.value)
 
-  const res = await axios.get(`https://api.giphy.com/v1/gifs/search`, {
-    params: { api_key: apiKey, q: termo.value, limit: 20 },
+  const res = await axios.get('https://api.giphy.com/v1/gifs/search', {
+    params: {
+      api_key: apiKey,
+      q: termo.value,
+      limit: 20,
+    },
   })
+
   gifs.value = res.data.data
 }
 
 async function buscarPorCategoria(nome) {
   categoriaSelecionada.value = nome
-  resultado.value = `GIFs da categoria: "${nome}"`
   titulo.value = 'Categorias'
   mostrarBusca.value = false
-  const res = await axios.get(`https://api.giphy.com/v1/gifs/search`, {
-    params: { api_key: apiKey, q: nome, limit: 20 },
+  resultado.value = `GIFs da categoria: "${nome}"`
+
+  const res = await axios.get('https://api.giphy.com/v1/gifs/search', {
+    params: {
+      api_key: apiKey,
+      q: nome,
+      limit: 20,
+    },
   })
+
   gifs.value = res.data.data
 }
 
@@ -341,6 +388,7 @@ function toggleFavorito(gif) {
   } else {
     favoritosList.value.push(gif)
   }
+
   salvarFavoritos()
 }
 
@@ -353,11 +401,20 @@ function carregarFavoritos() {
   favoritosList.value = salvos ? JSON.parse(salvos) : []
 }
 
+// =====================
+// Histórico de buscas
+// =====================
 function adicionarAoHistorico(termoBusca) {
   if (!termoBusca) return
+
   historicoBuscas.value = historicoBuscas.value.filter((t) => t !== termoBusca)
+
   historicoBuscas.value.unshift(termoBusca)
-  if (historicoBuscas.value.length > 15) historicoBuscas.value.pop()
+
+  if (historicoBuscas.value.length > 15) {
+    historicoBuscas.value.pop()
+  }
+
   localStorage.setItem('historicoBuscas', JSON.stringify(historicoBuscas.value))
 }
 
@@ -376,9 +433,13 @@ function buscarTermoHistorico(termoBusca) {
   buscarGifs()
 }
 
+// =====================
+// Carregar módulos
+// =====================
 onMounted(() => {
   carregarFavoritos()
   carregarHistorico()
-  exibirBusca()
+  navegar('Home', true)
+  carregarTrending()
 })
 </script>
