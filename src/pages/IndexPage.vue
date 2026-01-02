@@ -207,36 +207,38 @@
             <span>{{ titulo }}</span>
           </div>
           <p style="text-align: justify; padding-left: 10px; font-size: 16px">
-            SG Master GIFs Versão 1.00 é um aplicativo web desenvolvido pelo Dev. Luis Manuel Gimón
-            Silva, da SGBR Sistemas, com o objetivo de criar uma experiência simples e agradável
-            para quem gosta de buscar e salvar GIFs animados. Utilizando a API do GIPHY, o app
-            permite que você explore os GIFs mais populares do momento, faça buscas por qualquer
-            tema e ainda salve seus favoritos para acessar quando quiser.
+            O <strong>Master Giphy Sistemas</strong> é uma aplicação web criada por
+            <strong>Luis Manuel Gimón Silva</strong>, da <strong>SGBR Sistemas</strong>, pensada
+            para quem gosta de se divertir explorando GIFs animados. A plataforma utiliza a API do
+            GIPHY para permitir buscas rápidas, acesso aos GIFs em alta e a possibilidade de salvar
+            seus favoritos para consultar sempre que quiser.
           </p>
+
           <p style="text-align: justify; padding-left: 10px; font-size: 16px">
-            A aplicação foi construída utilizando tecnologias modernas de desenvolvimento web, como
-            o framework Quasar 2 e Vue 3 com a Composition API (script setup), para garantir uma
-            interface reativa, rápida e intuitiva. O Vue-router foi usado para gerenciar as
-            diferentes telas, enquanto o Pinia gerencia o estado da aplicação, mantendo seus
-            favoritos organizados.
+            Desenvolvido com <strong>Vue 3</strong> e <strong>Quasar Framework 2</strong>, o sistema
+            oferece uma navegação fluida e uma interface intuitiva. A organização das telas é feita
+            com o <strong>Vue Router</strong>, enquanto o <strong>Pinia</strong>
+            cuida do estado da aplicação, garantindo uma experiência consistente ao usuário.
           </p>
+
           <p style="text-align: justify; padding-left: 10px; font-size: 16px">
-            Para consumir os dados, utilizamos o Axios para fazer requisições à API do GIPHY, e os
-            favoritos são salvos localmente no navegador usando o LocalStorage através de um plugin
-            do Quasar, garantindo que seus GIFs preferidos estejam sempre disponíveis, mesmo após
-            fechar o navegador.
+            As informações são obtidas por meio do <strong>Axios</strong>, responsável pelas
+            requisições à API do GIPHY. Os GIFs favoritos ficam armazenados no próprio navegador,
+            usando o <strong>LocalStorage</strong>, o que permite manter seus conteúdos salvos mesmo
+            após sair da aplicação.
           </p>
+
           <p style="text-align: justify; padding-left: 10px; font-size: 16px">
-            Espero que este projeto proporcione uma experiência divertida e útil para você, assim
-            como foi uma ótima oportunidade para mim aplicar e expandir meus conhecimentos em
-            desenvolvimento web.
+            Mais do que um projeto, o Master Giphy Sistemas representa uma oportunidade de unir
+            aprendizado, criatividade e tecnologia em uma experiência prática e agradável.
           </p>
+
           <div style="text-align: center; padding-left: 10px; font-size: 16px">
-            Muito obrigado por usar o
-            <span class="text-blue-500 font-semibold">SG Master GIFs</span>!<br />
-            Com carinho e dedicação,<br />
+            Obrigado por utilizar o
+            <span class="text-blue-500 font-semibold">Master Giphy Sistemas</span>!<br />
+            Atenciosamente,<br />
             <span class="text-gray-700 font-semibold">Luis Manuel Gimón Silva</span><br />
-            <span class="text-sm text-gray-500">Desenvolvedor Front-end – SGBR Sistemas</span>
+            <span class="text-sm text-gray-500">Desenvolvedor Frontend – SGBR Sistemas</span>
           </div>
         </div>
       </div>
