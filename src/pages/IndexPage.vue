@@ -131,16 +131,36 @@
             
           </div>
 
-          <div class="galeria-gifs">
-            <template v-for="gif in gifs" :key="gif.id">
-              <div class="gif-container">
-                <img :src="gif.images.fixed_height.url" :alt="gif.title" class="gif-imagem" />
-                <button @click="toggleFavorito(gif)" class="botao-favorito">
-                  {{ isFavorito(gif.id) ? '⭐' : '⚡' }}
-                </button>
-              </div>
-            </template>
-          </div>
+      <div class="galeria-gifs">
+  <div
+    v-for="gif in gifs"
+    :key="gif.id"
+    class="gif-container"
+  >
+    <q-img
+      :src="gif.images.fixed_height.url"
+      :alt="gif.title"
+      fit="cover"
+      class="gif-imagem"
+    >
+      <!-- BOTÃO FAVORITO AQUI DENTRO -->
+      <div class="absolute-top-right q-pa-xs">
+        <q-btn
+          round
+          dense
+          size="sm"
+          color="dark"
+          @click="toggleFavorito(gif)"
+        >
+          {{ isFavorito(gif.id) ? '⭐' : '⚡' }}
+        </q-btn>
+      </div>
+    </q-img>
+  </div>
+</div>
+
+
+
         </div>
 
         <div v-else-if="titulo === 'Favoritos'">
@@ -243,10 +263,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
 import axios from 'axios'
 import logo from 'src/assets/logo.png'
 import usuario from 'src/assets/usuario.png'
+import { ref, onMounted } from 'vue'
 
 // =====================
 // Interfaces TypeScript
@@ -272,7 +292,6 @@ interface GiphyResponse {
 // =====================
 // Constantes
 // =====================
-const apiKey: string = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
 
 // =====================
 // Estado (Refs)
@@ -465,14 +484,14 @@ function voltarParaCategorias() {
   gifs.value = []             // opcional: limpa os GIFs exibidos
 }
 
+const apiKey: string = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
 
 // =====================
-// Lifecycle
+// Carregar módulos
 // =====================
 onMounted((): void => {
   carregarFavoritos()
   carregarHistorico()
-  navegar('Home', true)
-  carregarTrending()
+  navegar('Home', true)  
 })
 </script>

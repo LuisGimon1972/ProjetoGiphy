@@ -82,7 +82,7 @@ body {
   background-color: rgb(1, 13, 53);
   color: white;
   box-sizing: border-box;
-  text-align: left;
+  text-align: left;  
 }
 
 .conteudo {
@@ -197,17 +197,6 @@ body {
   font-size: 20px;
 }
 
-.gif-container {
-  position: relative;
-  display: inline-block;
-}
-
-.gif-imagem {
-  width: 100%;
-  display: block;
-  border-radius: 8px;
-}
-
 .botao-favorito {
   position: absolute;
   top: 8px;
@@ -243,4 +232,44 @@ body {
   transform: scale(1.2);
 }
 
+.galeria-gifs {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.gif-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* 🔥 mantém todas quadradas */
+  overflow: hidden;
+  border-radius: 10px;
+  background: #0d0d0d;
+}
+
+.gif-imagem {
+  width: 100%;
+  height: 100%;
+}
+
+/* 🔥 ESSENCIAL */
+.botao-favorito {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 10;              /* garante sobreposição */
+  background: rgba(0, 0, 0, 0.65);
+  color: white;
+}
+
+.gif-container {
+  aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.gif-imagem {
+  width: 100%;
+  height: 100%;
+}
 
