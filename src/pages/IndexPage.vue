@@ -1,94 +1,89 @@
 ﻿<template>
-  <div class="layout-principal">
-    <div class="painel-superior">
-      <img :src="logo" alt="Logo" class="logo" />
-      <label class="textonome">Master Giphy Sistemas</label>
-      <div class="perfil">
+    <div class="layout-principal">
+      <div class="painel-superior">
+        <img :src="logo" alt="Logo" class="logo" />
+        <label class="textonome">Master Giphy Sistemas</label>
+        <div class="perfil">
         <label class="texto">Dev. Luis Manuel Gimón</label>
         <img :src="usuario" alt="Usuario" class="usuariodev" />
       </div>
     </div>
 
     <div class="layout-conteudo" style="display: flex; min-height: 80vh">
-      <div class="painel-esquerdo" style="width: 16%; padding: 25px">
-        <q-item
-          clickable
-          v-ripple
-          :active="menuAtivo === 'home'"
-          active-class="menu-ativo"
-          @click="
-            () => {
-              navegar('Home', true)
-              carregarTrending()
-              menuAtivo = 'home'
-            }
-          "
-        >
-          <q-item-section avatar>
+      <div class="painel-esquerdo">
+          <q-item
+             clickable
+             v-ripple
+            :active="menuAtivo === 'home'"
+            active-class="menu-ativo"
+            @click="() => { navegar('Home', true); carregarTrending(); menuAtivo='home'; }"
+            >
+            <q-item-section avatar>
             <q-icon name="home_filled" class="menu-icon" />
-          </q-item-section>
-          <q-item-section>Home</q-item-section>
-        </q-item>
+            </q-item-section>
+            <q-item-section>Home</q-item-section>
+          </q-item>
 
-        <q-item
-          clickable
-          v-ripple
-          :active="menuAtivo === 'favoritos'"
-          active-class="menu-ativo"
-          @click="
-            () => {
-              navegar('Favoritos')
-              menuAtivo = 'favoritos'
-            }
-          "
-        >
-          <q-item-section avatar>
-            <q-icon name="people" class="menu-icon" />
-          </q-item-section>
-          <q-item-section>GIFs Favoritos</q-item-section>
-        </q-item>
+  <q-item
+    clickable
+    v-ripple
+    :active="menuAtivo === 'favoritos'"
+    active-class="menu-ativo"
+    @click="() => { navegar('Favoritos'); menuAtivo='favoritos'; }"
+  >
+    <q-item-section avatar>
+      <q-icon name="people" class="menu-icon" />
+    </q-item-section>
+    <q-item-section>GIFs Favoritos</q-item-section>
+  </q-item>
 
-        <q-item
-          clickable
-          v-ripple
-          :active="menuAtivo === 'categorias'"
-          active-class="menu-ativo"
-          @click="
-            () => {
-              navegar('Categorias')
-              menuAtivo = 'categorias'
-            }
-          "
-        >
-          <q-item-section avatar>
-            <q-icon name="apps" class="menu-icon" />
-          </q-item-section>
-          <q-item-section>GIFs por Categorias</q-item-section>
-        </q-item>
+  <q-item
+    clickable
+    v-ripple
+    :active="menuAtivo === 'categorias'"
+    active-class="menu-ativo"
+    @click="() => { navegar('Categorias'); menuAtivo='categorias'; }"
+  >
+    <q-item-section avatar>
+      <q-icon name="apps" class="menu-icon" />
+    </q-item-section>
+    <q-item-section>GIFs por Categorias</q-item-section>
+  </q-item>
 
-        <q-item
-          clickable
-          v-ripple
-          :active="menuAtivo === 'sobre'"
-          active-class="menu-ativo"
-          @click="
-            () => {
-              navegar('Sobre')
-              menuAtivo = 'sobre'
-            }
-          "
-        >
-          <q-item-section avatar>
-            <q-icon name="info_outline" class="menu-icon" />
-          </q-item-section>
-          <q-item-section>Sobre o sistema</q-item-section>
-        </q-item>
-      </div>
+    <q-item
+    clickable
+    v-ripple
+    :active="menuAtivo === 'configuracoes'"
+    active-class="menu-ativo"
+    @click="() => { navegar('Configurações'); menuAtivo='configuracoes'; }"
+  >
+    <q-item-section avatar>
+      <q-icon name="settings" class="menu-icon" />
+    </q-item-section>
+    <q-item-section>Configurações</q-item-section>
+  </q-item>
 
-      <div class="conteudo" style="flex-grow: 1; padding: 20px">
+  <q-item
+    clickable
+    v-ripple
+    :active="menuAtivo === 'sobre'"
+    active-class="menu-ativo"
+    @click="() => { navegar('Sobre'); menuAtivo='sobre'; }"
+  >
+    <q-item-section avatar>
+      <q-icon name="info_outline" class="menu-icon" />
+    </q-item-section>
+    <q-item-section>Sobre o sistema</q-item-section>
+  </q-item>
+
+
+</div>
+
+      <!-- Conteúdo sempre no modo normal -->
+<div class="conteudo">
         <br />
         <div v-if="mostrarBusca">
-          <div class="titulo-superior flex items-center gap-3">
+          <div class="titulo flex items-center gap-3">
             <q-icon name="home_filled" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>            
           </div>
@@ -132,6 +127,7 @@
           </div>
 
       <div class="galeria-gifs">
+
   <div
     v-for="gif in gifs"
     :key="gif.id"
@@ -159,12 +155,10 @@
   </div>
 </div>
 
-
-
         </div>
 
         <div v-else-if="titulo === 'Favoritos'">
-          <div class="titulo-superior flex items-center gap-3">
+          <div class="titulo flex items-center gap-3">
             <q-icon name="people" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
@@ -182,13 +176,14 @@
         </div>
 
         <div v-else-if="titulo === 'Categorias'">
-          <div class="titulo-superior flex items-center gap-3">
+          <div class="titulo flex items-center gap-3">
             <q-icon name="apps" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
           <label class="resultado">{{ resultado }}</label>
+
           <div v-if="!categoriaSelecionada">
-            <p class="voltar-categorias">Selecione uma categoria:</p>
+            <p class="voltar-categorias catego">Selecione uma categoria:</p>
             <div style="display: flex; flex-wrap: wrap; gap: 10px">
               <button
                 v-for="cat in categoriasList"
@@ -201,7 +196,7 @@
             </div>
           </div>
           <div v-else>
-           <button @click="voltarParaCategorias" class="voltar-categorias">
+           <button @click="voltarParaCategorias" class="sobre voltar-categorias">
               ⇦ Voltar para categorias
           </button>
             <div class="galeria-gifs">
@@ -216,13 +211,78 @@
             </div>
           </div>
         </div>
+        
+        <div v-else-if="titulo === 'Configurações'">
+  <div class="titulo flex items-center gap-3">
+    <q-icon name="settings" size="32px" class="icone-titulo" />
+    <span>{{ titulo }}</span>
+  </div>
+
+  <div class="q-mt-md q-gutter-md" style="max-width: 500px">
+
+    <!-- Dark Mode -->
+    <q-card>
+      <q-card-section class="row items-center justify-between">
+        <div>
+          <div class="text-weight-bold">Modo Escuro</div>
+          <div class="text-caption text-grey">
+            Alternar entre tema claro e escuro
+          </div>
+        </div>
+
+        <q-toggle v-model="modoEscuro" @update:model-value="alternarTema" />
+      </q-card-section>
+    </q-card>
+
+    <!-- Limpar Favoritos -->
+    <q-card>
+      <q-card-section class="row items-center justify-between">
+        <div>
+          <div class="text-weight-bold">Favoritos</div>
+          <div class="text-caption text-grey">
+            Remover todos os GIFs favoritos
+          </div>
+        </div>
+
+        <q-btn
+          color="negative"
+          flat
+          icon="delete"
+          label="Limpar"
+          @click="limparFavoritos"
+        />
+      </q-card-section>
+    </q-card>
+
+    <!-- Limpar Histórico -->
+    <q-card>
+      <q-card-section class="row items-center justify-between">
+        <div>
+          <div class="text-weight-bold">Histórico de buscas</div>
+          <div class="text-caption text-grey">
+            Apagar todas as pesquisas realizadas
+          </div>
+        </div>
+
+        <q-btn
+          color="negative"
+          flat
+          icon="delete"
+          label="Limpar"
+          @click="limparHistorico"
+        />
+      </q-card-section>
+    </q-card>
+
+  </div>
+</div>
 
         <div v-else-if="titulo === 'Sobre'">
-          <div class="titulo-superior flex items-center gap-3">
+          <div class="titulo flex items-center gap-3">
             <q-icon name="info_outline" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
-          <p style="text-align: justify; padding-left: 10px; font-size: 16px">
+          <p class="sobre" style="text-align: justify; padding-left: 10px; font-size: 16px">
             O <strong>Master Giphy Sistemas</strong> é uma aplicação web criada por
             <strong>Luis Manuel Gimón Silva</strong>, da <strong>SGBR Sistemas</strong>, pensada
             para quem gosta de se divertir explorando GIFs animados. A plataforma utiliza a API do
@@ -230,31 +290,31 @@
             seus favoritos para consultar sempre que quiser.
           </p>
 
-          <p style="text-align: justify; padding-left: 10px; font-size: 16px">
+          <p class="sobre" style="text-align: justify; padding-left: 10px; font-size: 16px">
             Desenvolvido com <strong>Vue 3</strong> e <strong>Quasar Framework 2</strong>, o sistema
             oferece uma navegação fluida e uma interface intuitiva. A organização das telas é feita
             com o <strong>Vue Router</strong>, enquanto o <strong>Pinia</strong>
             cuida do estado da aplicação, garantindo uma experiência consistente ao usuário.
           </p>
 
-          <p style="text-align: justify; padding-left: 10px; font-size: 16px">
+          <p class="sobre" style="text-align: justify; padding-left: 10px; font-size: 16px">
             As informações são obtidas por meio do <strong>Axios</strong>, responsável pelas
             requisições à API do GIPHY. Os GIFs favoritos ficam armazenados no próprio navegador,
             usando o <strong>LocalStorage</strong>, o que permite manter seus conteúdos salvos mesmo
             após sair da aplicação.
           </p>
 
-          <p style="text-align: justify; padding-left: 10px; font-size: 16px">
+          <p class="sobre" style="text-align: justify; padding-left: 10px; font-size: 16px">
             Mais do que um projeto, o Master Giphy Sistemas representa uma oportunidade de unir
             aprendizado, criatividade e tecnologia em uma experiência prática e agradável.
           </p>
 
-          <div style="text-align: center; padding-left: 10px; font-size: 16px">
+          <div class="sobre" style="text-align: center; padding-left: 10px; font-size: 16px">
             Obrigado por utilizar o
-            <span class="text-blue-500 font-semibold">Master Giphy Sistemas</span>!<br />
+            <span class="sobre text-blue-500 font-semibold">Master Giphy Sistemas</span>!<br />
             Atenciosamente,<br />
-            <span class="text-gray-700 font-semibold">Luis Manuel Gimón Silva</span><br />
-            <span class="text-sm text-gray-500">Desenvolvedor Frontend – SGBR Sistemas</span>
+            <span class="sobre text-gray-700 font-semibold">Luis Manuel Gimón Silva</span><br />
+            <span class="sobre text-sm text-gray-500">Desenvolvedor Frontend – SGBR Sistemas</span>
           </div>
         </div>
       </div>
@@ -267,6 +327,9 @@ import axios from 'axios'
 import logo from 'src/assets/logo.png'
 import usuario from 'src/assets/usuario.png'
 import { ref, onMounted } from 'vue'
+import { useQuasar } from 'quasar'
+const $q = useQuasar()
+const modoEscuro = ref($q.dark.isActive)
 
 // =====================
 // Interfaces TypeScript
@@ -484,12 +547,38 @@ function voltarParaCategorias() {
   gifs.value = []             // opcional: limpa os GIFs exibidos
 }
 
+function alternarTema(val: boolean) {
+  $q.dark.set(val)      // ativa ou desativa dark mode
+  modoEscuro.value = val
+}
+
+
+function limparFavoritos(): void {
+  favoritosList.value = []
+  localStorage.removeItem('meusFavoritos')
+
+  $q.notify({
+    message: 'Favoritos removidos com sucesso',
+    color: 'positive',
+    icon: 'check'
+  })
+}
+
+const temaSalvo = localStorage.getItem('modoEscuro')
+if (temaSalvo !== null) {
+  modoEscuro.value = JSON.parse(temaSalvo)
+  $q.dark.set(modoEscuro.value)
+}
+
 const apiKey: string = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
 
 // =====================
 // Carregar módulos
 // =====================
 onMounted((): void => {
+  const temaSalvo = localStorage.getItem('modoEscuro')
+  modoEscuro.value = temaSalvo ? JSON.parse(temaSalvo) : false
+  $q.dark.set(modoEscuro.value)
   carregarFavoritos()
   carregarHistorico()
   navegar('Home', true)  
