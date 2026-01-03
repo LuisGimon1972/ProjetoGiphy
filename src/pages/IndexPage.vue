@@ -532,9 +532,17 @@ function carregarHistorico(): void {
 }
 
 function limparHistorico(): void {
+  if (historicoBuscas.value.length > 0) {
   historicoBuscas.value = []
-  localStorage.removeItem('historicoBuscas')
+  localStorage.removeItem('historicoBuscas')  
+    $q.notify({
+      type: 'positive',
+      message: 'Histórico removido com sucesso',
+      icon: 'check'
+    })
+  }  
 }
+
 
 function buscarTermoHistorico(termoBusca: string): void {
   termo.value = termoBusca
@@ -553,15 +561,16 @@ function alternarTema(val: boolean) {
 }
 
 
-function limparFavoritos(): void {
+function limparFavoritos(): void {    
+  if(favoritosList.value.length>0){
   favoritosList.value = []
   localStorage.removeItem('meusFavoritos')
-
   $q.notify({
     message: 'Favoritos removidos com sucesso',
     color: 'positive',
     icon: 'check'
   })
+  }
 }
 
 const temaSalvo = localStorage.getItem('modoEscuro')
