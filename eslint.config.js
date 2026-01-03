@@ -49,7 +49,7 @@ export default [
   {
     rules: {
       'prefer-promise-reject-errors': 'off',
-      'no-debugger': import.meta.env.PROD ? 'error' : 'off',
+      'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     },
   },
 

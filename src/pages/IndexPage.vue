@@ -86,14 +86,16 @@
       </div>
 
       <div class="conteudo" style="flex-grow: 1; padding: 20px">
-        <br /><br />
-        <label class="resultado">{{ resultado }}</label>
-
+        <br />
         <div v-if="mostrarBusca">
           <div class="titulo-superior flex items-center gap-3">
             <q-icon name="home_filled" size="32px" class="icone-titulo" />
-            <span>{{ titulo }}</span>
+            <span>{{ titulo }}</span>            
           </div>
+          <br />
+          <label class="resultado">{{ resultado }}</label>
+          
+          
           <div class="q-mb-md flex items-center gap-2">
             <q-input
               v-model="termo"
@@ -109,7 +111,13 @@
           </div>
 
           <div v-if="historicoBuscas.length" style="margin-bottom: 15px">
-            <label style="font-weight: bold">Histórico de pesquisas:</label>
+            <label style="font-weight: bold; font-size: 20px; color:#0f172a">Histórico de pesquisas</label>
+            <button
+                @click="limparHistorico"
+                class="botao-esquerda botao-danger">
+                <span class="icone">🗑️</span>
+                Limpar histórico
+              </button>
             <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px">
               <button
                 v-for="termoHist in historicoBuscas"
@@ -120,20 +128,7 @@
                 {{ termoHist }}
               </button>
             </div>
-            <div style="margin-top: 10px">
-              <button
-                @click="limparHistorico"
-                class="botao-esquerda"
-                style="
-                  padding: 4px 8px;
-                  font-size: 14px;
-                  background-color: rgb(200, 60, 60);
-                  color: white;
-                "
-              >
-                🗑️ Limpar histórico
-              </button>
-            </div>
+            
           </div>
 
           <div class="galeria-gifs">
@@ -171,6 +166,7 @@
             <q-icon name="apps" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
+          <label class="resultado">{{ resultado }}</label>
           <div v-if="!categoriaSelecionada">
             <p class="voltar-categorias">Selecione uma categoria:</p>
             <div style="display: flex; flex-wrap: wrap; gap: 10px">
@@ -185,9 +181,9 @@
             </div>
           </div>
           <div v-else>
-            <button @click="categoriaSelecionada = ''" class="voltar-categorias">
-              ⇦ Retornar às categorias
-            </button>
+           <button @click="voltarParaCategorias" class="voltar-categorias">
+              ⇦ Voltar para categorias
+          </button>
             <div class="galeria-gifs">
               <template v-for="gif in gifs" :key="gif.id">
                 <div class="gif-container">
@@ -317,6 +313,7 @@ const categoriasList = ref<string[]>([
   'Música',
   'Jogos',
   'Futebol',
+  'Esportes',
 
   // Datas & temas sociais
   'Aniversário',
@@ -334,6 +331,11 @@ const categoriasList = ref<string[]>([
   // Tecnologia
   'Tecnologia',
   'Devs',
+
+  //Veículos
+  'Carros',
+  'Motos',
+  'Bicicletas',
 ])
 
 // =====================
@@ -386,8 +388,8 @@ async function buscarPorCategoria(nome: string): Promise<void> {
   categoriaSelecionada.value = nome
   titulo.value = 'Categorias'
   mostrarBusca.value = false
-  resultado.value = `GIFs da categoria: "${nome}"`
-
+  resultado.value = `GIFs da categoria: ${nome}`
+   
   const res = await axios.get<GiphyResponse>('https://api.giphy.com/v1/gifs/search', {
     params: {
       api_key: apiKey,
@@ -456,6 +458,13 @@ function buscarTermoHistorico(termoBusca: string): void {
   termo.value = termoBusca
   buscarGifs()
 }
+
+function voltarParaCategorias() {
+  categoriaSelecionada.value = ''
+  resultado.value = ''        // 🔥 apaga o resultado anterior
+  gifs.value = []             // opcional: limpa os GIFs exibidos
+}
+
 
 // =====================
 // Lifecycle
