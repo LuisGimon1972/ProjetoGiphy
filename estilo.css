@@ -83,6 +83,8 @@ body {
   background-color: #080808;
 }
 
+.body--dark .btn-historico-suave,
+.body--dark .historicopes,
 .body--dark .titulo,
 .body--dark .catego,
 .body--dark .resultado,
@@ -350,4 +352,34 @@ body {
 }
 
 
+.alinhar {
+text-align: justify; 
+text-indent: 2em; 
+font-size: 16px; 
+margin-top: 20px;
+margin-left: 40px;
+margin-right: 40px;
+}
 
+.alinharcentro {
+text-align: center; 
+padding-left: 10px; 
+font-size: 16px
+}
+
+.justificar {
+text-align: justify
+}
+
+.historico {
+display: flex; 
+flex-wrap: wrap; 
+gap: 5px; 
+margin-top: 5px
+}
+
+.historicopes {
+font-weight: bold; 
+font-size: 20px; 
+color:#0f172a
+}
