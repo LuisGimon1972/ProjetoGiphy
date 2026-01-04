@@ -107,21 +107,26 @@
 
           <div v-if="historicoBuscas.length" style="margin-bottom: 15px">
             <label style="font-weight: bold; font-size: 20px; color:#0f172a">Histórico de pesquisas</label>
-            <button
-                @click="limparHistorico"
-                class="botao-esquerda botao-danger">
-                <span class="icone">🗑️</span>
-                Limpar histórico
-              </button>
+            <q-btn
+              color="negative"
+              icon="delete"
+              label="Limpar histórico"
+              flat
+              class="btn-historico-suave"
+              @click="limparHistorico"
+              />
+
             <div style="display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px">
-              <button
-                v-for="termoHist in historicoBuscas"
-                :key="termoHist"
-                @click="buscarTermoHistorico(termoHist)"
-                class="botao-categoria"
-              >
-                {{ termoHist }}
-              </button>
+              <q-btn
+                  v-for="termoHist in historicoBuscas"
+                  :key="termoHist"
+                  @click="buscarTermoHistorico(termoHist)"
+                  :label="termoHist"
+                  color="primary"
+                  unelevated
+                  rounded
+                  class="btn-historico-termo"
+            />
             </div>
             
           </div>
@@ -185,20 +190,31 @@
           <div v-if="!categoriaSelecionada">
             <p class="voltar-categorias catego">Selecione uma categoria:</p>
             <div style="display: flex; flex-wrap: wrap; gap: 10px">
-              <button
-                v-for="cat in categoriasList"
-                :key="cat"
-                @click="buscarPorCategoria(cat)"
-                class="botao-categoria"
-              >
-                {{ cat }}
-              </button>
+              <q-btn
+  v-for="cat in categoriasList"
+  :key="cat"
+  @click="buscarPorCategoria(cat)"
+  :label="cat"
+  :color="$q.dark.isActive ? 'dark' : 'primary'"
+  unelevated
+  dense
+  class="botao-categoria ripple-suave"
+  v-ripple
+/>
+
+
             </div>
           </div>
           <div v-else>
-           <button @click="voltarParaCategorias" class="sobre voltar-categorias">
-              ⇦ Voltar para categorias
-          </button>
+           <q-btn
+              flat
+              icon="arrow_back"
+              label="Voltar para categorias"
+              color="primary"
+              class="btn-voltar-categorias"
+              @click="voltarParaCategorias"
+            />
+
             <div class="galeria-gifs">
               <template v-for="gif in gifs" :key="gif.id">
                 <div class="gif-container">
@@ -326,7 +342,7 @@
 import axios from 'axios'
 import logo from 'src/assets/logo.png'
 import usuario from 'src/assets/usuario.png'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { useQuasar } from 'quasar'
 const $q = useQuasar()
 const modoEscuro = ref($q.dark.isActive)
@@ -351,11 +367,6 @@ export interface Gif {
 interface GiphyResponse {
   data: Gif[]
 }
-
-// =====================
-// Constantes
-// =====================
-
 // =====================
 // Estado (Refs)
 // =====================
@@ -581,15 +592,33 @@ if (temaSalvo !== null) {
 
 const apiKey: string = 'iiye8KLR1pbzIZpCkxeISNhu0GxViohh'
 
+//Restaura a configuração do tema salva
+watch(modoEscuro, (valor) => {
+  $q.dark.set(valor)
+  localStorage.setItem('modoEscuro', JSON.stringify(valor))
+})
+
+
 // =====================
 // Carregar módulos
 // =====================
 onMounted((): void => {
+
+  //Salva Configuração do tema
   const temaSalvo = localStorage.getItem('modoEscuro')
-  modoEscuro.value = temaSalvo ? JSON.parse(temaSalvo) : false
-  $q.dark.set(modoEscuro.value)
+
+  if (temaSalvo !== null) {
+    modoEscuro.value = JSON.parse(temaSalvo)
+    $q.dark.set(modoEscuro.value)
+  } else {
+    modoEscuro.value = false
+    $q.dark.set(false)
+  }
+  //Fim Salva Configuração do tema 
+
   carregarFavoritos()
   carregarHistorico()
-  navegar('Home', true)  
+  navegar('Home', true)
 })
+
 </script>

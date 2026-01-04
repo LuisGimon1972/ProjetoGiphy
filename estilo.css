@@ -27,7 +27,7 @@ body {
   justify-content: space-between;
   height: 1.75cm;
   width: 100%;
-  background-color: #0244bd;
+  background-color: rgb(1, 14, 59);
   color: white;
   padding: 0 20px;
   box-sizing: border-box;
@@ -62,7 +62,7 @@ body {
 .painel-esquerdo {
   width: 17%;
   border-radius: 1px 20px 0 0;
-  background-color: rgb(1, 13, 53); /* azul */
+  background-color: rgb(1, 14, 59); /* azul */
   color: white;
   box-sizing: border-box;
   text-align: left;
@@ -90,6 +90,12 @@ body {
 .body--dark .mensagem-vazia {
   color: white;
 }
+
+.body--dark .botao-categoria {
+  background-color: #010714; /* azul/preto elegante */
+  color: #e5e7eb;           /* texto claro */
+}
+
 
 /* Dark mode para painéis */
 .resultado {
@@ -302,3 +308,46 @@ body {
   background: rgba(0, 0, 0, 0.65);
   color: white;
 }
+
+.btn-historico-suave {
+  background-color: rgba(216, 32, 32, 0.08);
+  border-radius: 8px;
+}
+
+.body--dark .btn-historico-termo {
+  opacity: 0.95;
+}
+
+.btn-voltar-categorias {
+  background-color: rgba(2, 68, 189, 0.08);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-voltar-categorias:hover {
+  background-color: rgba(2, 68, 189, 0.15);
+}
+
+.body--dark .btn-voltar-categorias {
+  background-color: rgba(2, 68, 189, 0.2);
+}
+
+.botao-categoria {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.botao-categoria:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+.ripple-suave .q-ripple__inner {
+  opacity: 0.25;
+}
+
+
+
