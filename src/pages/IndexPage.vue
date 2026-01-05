@@ -294,15 +294,15 @@
             aos GIFs em alta e a possibilidade de salvar conteúdos favoritos para consultas futuras.
           </p>
           <p class="sobre alinhar">
-            Desenvolvido com <strong>Vue 3</strong> e <strong>Quasar Framework 2</strong>, o sistema
-            oferece uma navegação fluida, layout moderno e excelente experiência do usuário. A
-            aplicação adota uma arquitetura organizada, utilizando o
-            <strong>Vue Router</strong> para navegação entre módulos,
-            <strong>TypeScript</strong> para garantir maior segurança, legibilidade e manutenção do
-            código, e o <strong>Tailwind CSS</strong> para ajustes visuais rápidos, padronização de
-            estilos e maior flexibilidade na personalização da interface.
+            Desenvolvido com <strong>Vue 3</strong>, <strong>Quasar Framework 2</strong> e
+            <strong>Tailwind CSS</strong>, o sistema foi projetado para oferecer uma interface
+            moderna, responsiva e de fácil utilização. A aplicação utiliza o
+            <strong>Vue Router</strong> para organizar a navegação entre as diferentes áreas do
+            sistema, o <strong>Pinia</strong> para gerenciar os dados e estados compartilhados de
+            forma centralizada, o <strong>Axios</strong> para realizar a comunicação com APIs
+            externas, e o <strong>TypeScript</strong> para tornar o código mais seguro, legível e
+            simples de manter.
           </p>
-
           <p class="sobre alinhar">
             As funcionalidades de configuração permitem ao usuário personalizar a experiência,
             incluindo a alternância entre <strong>modo claro e modo escuro</strong>, com
