@@ -299,9 +299,14 @@
             moderna, responsiva e de fácil utilização. A aplicação utiliza o
             <strong>Vue Router</strong> para organizar a navegação entre as diferentes áreas do
             sistema, o <strong>Pinia</strong> para gerenciar os dados e estados compartilhados de
-            forma centralizada, o <strong>Axios</strong> para realizar a comunicação com APIs
-            externas, e o <strong>TypeScript</strong> para tornar o código mais seguro, legível e
-            simples de manter.
+            forma centralizada e o <strong>TypeScript</strong> para tornar o código mais seguro,
+            legível e simples de manter.
+          </p>
+          <p class="sobre alinhar">
+            As requisições à API são realizadas com <strong>Axios</strong>, garantindo comunicação
+            eficiente e confiável. Os dados do usuário, como favoritos, histórico de pesquisas e
+            preferências de tema, permanecem salvos no navegador, assegurando continuidade da
+            experiência mesmo após o encerramento da aplicação.
           </p>
           <p class="sobre alinhar">
             As funcionalidades de configuração permitem ao usuário personalizar a experiência,
@@ -310,14 +315,6 @@
             sistema também oferece opções para gerenciamento de dados locais, como limpeza do
             histórico de buscas e dos GIFs favoritos, proporcionando maior controle e praticidade.
           </p>
-
-          <p class="sobre alinhar">
-            As requisições à API são realizadas com <strong>Axios</strong>, garantindo comunicação
-            eficiente e confiável. Os dados do usuário, como favoritos, histórico de pesquisas e
-            preferências de tema, permanecem salvos no navegador, assegurando continuidade da
-            experiência mesmo após o encerramento da aplicação.
-          </p>
-
           <p class="sobre alinhar">
             Mais do que um simples projeto, o <strong>Master Giphy Sistemas</strong> representa a
             aplicação prática de boas práticas de desenvolvimento frontend, unindo aprendizado,
