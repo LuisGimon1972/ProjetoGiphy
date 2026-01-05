@@ -297,9 +297,10 @@
             Desenvolvido com <strong>Vue 3</strong> e <strong>Quasar Framework 2</strong>, o sistema
             oferece uma navegação fluida, layout moderno e excelente experiência do usuário. A
             aplicação adota uma arquitetura organizada, utilizando o
-            <strong>Vue Router</strong> para navegação entre módulos e
+            <strong>Vue Router</strong> para navegação entre módulos,
             <strong>TypeScript</strong> para garantir maior segurança, legibilidade e manutenção do
-            código.
+            código, e o <strong>Tailwind CSS</strong> para ajustes visuais rápidos, padronização de
+            estilos e maior flexibilidade na personalização da interface.
           </p>
 
           <p class="sobre alinhar">
