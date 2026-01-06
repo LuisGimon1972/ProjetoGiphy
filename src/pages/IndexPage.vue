@@ -161,7 +161,7 @@
                 class="gif-imagem"
               >
                 <div class="absolute-top-right q-pa-xs">
-                  <q-btn round dense size="sm" color="dark" @click="toggleFavorito(gif)">
+                  <q-btn round dense size="md" color="dark" @click="toggleFavorito(gif)">
                     {{ isFavorito(gif.id) ? '⭐' : '⚡' }}
                   </q-btn>
                 </div>
@@ -174,6 +174,7 @@
             <q-icon name="people" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
+          <br />
 
           <div v-if="favoritosList.length === 0" class="mensagem-vazia">
             {{ avisofavoritos() }}
@@ -183,7 +184,18 @@
             <template v-for="gif in favoritosList" :key="gif.id">
               <div class="gif-container">
                 <img :src="gif.images.fixed_height.url" :alt="gif.title" class="gif-imagem" />
-                <button @click="toggleFavorito(gif)" class="botao-favorito">⭐</button>
+                <div class="absolute-top-right q-pa-xs">
+                  <q-btn
+                    round
+                    dense
+                    size="md"
+                    color="dark"
+                    class="botao-favorito"
+                    @click="toggleFavorito(gif)"
+                  >
+                    ⭐
+                  </q-btn>
+                </div>
               </div>
             </template>
           </div>
@@ -229,9 +241,11 @@
               <template v-for="gif in gifs" :key="gif.id">
                 <div class="gif-container">
                   <img :src="gif.images.fixed_height.url" :alt="gif.title" class="gif-imagem" />
-                  <button @click="toggleFavorito(gif)" class="botao-favorito">
-                    {{ isFavorito(gif.id) ? '⭐' : '⚡' }}
-                  </button>
+                  <div class="absolute-top-right q-pa-xs">
+                    <q-btn round dense size="md" color="dark" @click="toggleFavorito(gif)">
+                      {{ isFavorito(gif.id) ? '⭐' : '⚡' }}
+                    </q-btn>
+                  </div>
                 </div>
               </template>
             </div>
@@ -416,7 +430,7 @@ const categoriasList = ref<string[]>([
   // Cultura & entretenimento
   'Personagens',
   'Filmes',
-  'Animes',
+  'Anime',
   'Músicas',
   'Jogos',
   'Futebol',
