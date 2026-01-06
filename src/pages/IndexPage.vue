@@ -8,6 +8,7 @@
         <img :src="usuario" alt="Usuario" class="usuariodev" />
       </div>
     </div>
+
     <div class="layout-conteudo" style="display: flex; min-height: 80vh">
       <div class="painel-esquerdo">
         <q-item
@@ -110,6 +111,7 @@
             <span>{{ titulo }}</span>
           </div>
           <br />
+
           <label class="resultado">{{ resultado }}</label>
 
           <div class="q-mb-md flex items-center gap-2">
@@ -172,9 +174,11 @@
             <q-icon name="people" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
+
           <div v-if="favoritosList.length === 0" class="mensagem-vazia">
             {{ avisofavoritos() }}
           </div>
+
           <div class="galeria-gifs">
             <template v-for="gif in favoritosList" :key="gif.id">
               <div class="gif-container">
@@ -190,9 +194,12 @@
             <q-icon name="apps" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
+
           <label class="resultado">{{ resultado }}</label>
+
           <div v-if="!categoriaSelecionada">
             <p class="voltar-categorias catego">Selecione uma categoria:</p>
+
             <div style="display: flex; flex-wrap: wrap; gap: 10px">
               <q-btn
                 v-for="cat in categoriasList"
@@ -207,6 +214,7 @@
               />
             </div>
           </div>
+
           <div v-else>
             <q-btn
               flat
@@ -216,6 +224,7 @@
               class="btn-voltar-categorias"
               @click="voltarParaCategorias"
             />
+
             <div class="galeria-gifs">
               <template v-for="gif in gifs" :key="gif.id">
                 <div class="gif-container">
@@ -234,6 +243,7 @@
             <q-icon name="settings" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
+
           <div class="q-mt-md q-gutter-md" style="max-width: 500px">
             <q-card>
               <q-card-section class="row items-center justify-between">
@@ -241,6 +251,7 @@
                   <div class="text-weight-bold">Modo Escuro</div>
                   <div class="text-caption text-grey">Alternar entre tema claro e escuro</div>
                 </div>
+
                 <q-toggle v-model="modoEscuro" @update:model-value="alternarTema" />
               </q-card-section>
             </q-card>
@@ -252,6 +263,7 @@
                   <div class="text-weight-bold">Favoritos</div>
                   <div class="text-caption text-grey">Remover todos os GIFs favoritos</div>
                 </div>
+
                 <q-btn
                   color="negative"
                   flat
@@ -269,6 +281,7 @@
                   <div class="text-weight-bold">Histórico de buscas</div>
                   <div class="text-caption text-grey">Apagar todas as pesquisas realizadas</div>
                 </div>
+
                 <q-btn
                   color="negative"
                   flat
@@ -286,6 +299,7 @@
             <q-icon name="info_outline" size="32px" class="icone-titulo" />
             <span>{{ titulo }}</span>
           </div>
+
           <p class="sobre alinhar">
             O <strong>Master Giphy Sistemas</strong> é uma aplicação web desenvolvida por
             <strong>Luis Manuel Gimón Silva</strong>, da <strong>SGBR Sistemas</strong>, criada para
@@ -293,6 +307,7 @@
             utiliza a API oficial do <strong>GIPHY</strong>, permitindo buscas eficientes, acesso
             aos GIFs em alta e a possibilidade de salvar conteúdos favoritos para consultas futuras.
           </p>
+
           <p class="sobre alinhar">
             Desenvolvido com <strong>Vue 3</strong>, <strong>Quasar Framework 2</strong> e
             <strong>Tailwind CSS</strong>, o sistema foi projetado para oferecer uma interface
@@ -302,12 +317,14 @@
             forma centralizada e o <strong>TypeScript</strong> para tornar o código mais seguro,
             legível e simples de manter.
           </p>
+
           <p class="sobre alinhar">
             As requisições à API são realizadas com <strong>Axios</strong>, garantindo comunicação
             eficiente e confiável. Os dados do usuário, como favoritos, histórico de pesquisas e
             preferências de tema, permanecem salvos no navegador, assegurando continuidade da
             experiência mesmo após o encerramento da aplicação.
           </p>
+
           <p class="sobre alinhar">
             As funcionalidades de configuração permitem ao usuário personalizar a experiência,
             incluindo a alternância entre <strong>modo claro e modo escuro</strong>, com
@@ -315,6 +332,7 @@
             sistema também oferece opções para gerenciamento de dados locais, como limpeza do
             histórico de buscas e dos GIFs favoritos, proporcionando maior controle e praticidade.
           </p>
+
           <p class="sobre alinhar">
             Mais do que um simples projeto, o <strong>Master Giphy Sistemas</strong> representa a
             aplicação prática de boas práticas de desenvolvimento frontend, unindo aprendizado,
@@ -398,8 +416,8 @@ const categoriasList = ref<string[]>([
   // Cultura & entretenimento
   'Personagens',
   'Filmes',
-  'Anime',
-  'Música',
+  'Animes',
+  'Músicas',
   'Jogos',
   'Futebol',
   'Esportes',
