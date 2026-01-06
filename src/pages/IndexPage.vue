@@ -17,7 +17,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              navegar('Home', true)
+              Examinar('Home', true)
               carregarTrending()
               menuAtivo = 'home'
             }
@@ -36,7 +36,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              navegar('Favoritos')
+              Examinar('Favoritos')
               menuAtivo = 'favoritos'
             }
           "
@@ -54,7 +54,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              navegar('Categorias')
+              Examinar('Categorias')
               menuAtivo = 'categorias'
             }
           "
@@ -72,7 +72,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              navegar('Configurações')
+              Examinar('Configurações')
               menuAtivo = 'configuracoes'
             }
           "
@@ -90,7 +90,7 @@
           active-class="menu-ativo"
           @click="
             () => {
-              navegar('Sobre')
+              Examinar('Sobre')
               menuAtivo = 'sobre'
             }
           "
@@ -341,6 +341,7 @@ import usuario from 'src/assets/usuario.png'
 import { ref, onMounted, watch } from 'vue'
 import { useQuasar } from 'quasar'
 import { Dialog } from 'quasar'
+
 const $q = useQuasar()
 const modoEscuro = ref($q.dark.isActive)
 
@@ -364,6 +365,7 @@ export interface Gif {
 interface GiphyResponse {
   data: Gif[]
 }
+
 // =====================
 // Estado (Refs) e constantes
 // =====================
@@ -428,7 +430,7 @@ const categoriasList = ref<string[]>([
 // =====================
 // Navegação / UI
 // =====================
-function navegar(tituloPagina: string, exibirBuscaAtiva = false): void {
+function Examinar(tituloPagina: string, exibirBuscaAtiva = false): void {
   titulo.value = tituloPagina
   mostrarBusca.value = exibirBuscaAtiva
   resultado.value = ''
@@ -626,6 +628,6 @@ onMounted((): void => {
   bemvinda()
   carregarFavoritos()
   carregarHistorico()
-  navegar('Home', true)
+  Examinar('Home', true)
 })
 </script>
