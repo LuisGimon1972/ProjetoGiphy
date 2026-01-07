@@ -17,8 +17,8 @@ body {
   transform: translateX(0);
   box-sizing: border-box;
   .body--dark .painel-superior {
-  background: white;
-}
+    background: white;
+  }
 }
 
 .painel-superior {
@@ -27,7 +27,7 @@ body {
   justify-content: space-between;
   height: 1.75cm;
   width: 100%;
-  background-color: rgb(1, 14, 59);
+  background-color: rgb(2, 22, 94);
   color: white;
   padding: 0 20px;
   box-sizing: border-box;
@@ -40,7 +40,7 @@ body {
 .titulo {
   flex: 1;
   text-align: center;
-  margin: 0;    
+  margin: 0;
 }
 
 .sobre {
@@ -52,15 +52,24 @@ body {
   white-space: nowrap;
 }
 
+.menutop {
+  margin-top: 45px;
+}
+
+.menusep {
+  margin-top: 15px;
+}
+
 .layout-conteudo {
   display: flex;
   flex: 1;
   width: 100%;
+  min-height: 80vh;
 }
 
 /* Painel esquerdo */
 .painel-esquerdo {
-  width: 17%;
+  width: 18%;
   border-radius: 1px 20px 0 0;
   background-color: rgb(1, 14, 59); /* azul */
   color: white;
@@ -71,7 +80,7 @@ body {
 
 /* DARK MODE */
 .body--dark .painel-esquerdo {
-  background-color: #111111;
+  background-color: #2e2d2d;
 }
 
 .body--dark .painel-superior {
@@ -79,8 +88,8 @@ body {
 }
 
 .body--dark .galeria-gifs,
-.body--dark .conteudo  {
-  background-color: #080808;
+.body--dark .conteudo {
+  background-color: #1a1919;
 }
 
 .body--dark .btn-historico-suave,
@@ -95,14 +104,13 @@ body {
 
 .body--dark .botao-categoria {
   background-color: #010714; /* azul/preto elegante */
-  color: #e5e7eb;           /* texto claro */
+  color: #e5e7eb; /* texto claro */
 }
-
 
 /* Dark mode para painéis */
 .resultado {
   margin-top: 10px;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;  
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 1.5rem;
   margin-bottom: 30px;
   color: green;
@@ -118,7 +126,7 @@ body {
 .conteudo {
   width: 100%;
   background-color: white;
-  color: #000;
+  color: #1a1919;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -197,9 +205,8 @@ body {
   outline-offset: 2px;
 }
 
-
 .mensagem-vazia {
-  padding: 20px;  
+  padding: 20px;
   border-radius: 6px;
   color: black;
 }
@@ -275,7 +282,7 @@ body {
 .gif-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1;   /* 🔥 mantém todas quadradas */
+  aspect-ratio: 1 / 1; /* 🔥 mantém todas quadradas */
   overflow: hidden;
   border-radius: 10px;
   background: #0d0d0d;
@@ -306,7 +313,7 @@ body {
   position: absolute;
   top: 8px;
   right: 8px;
-  z-index: 10;              /* garante sobreposição */
+  z-index: 10; /* garante sobreposição */
   background: rgba(0, 0, 0, 0.65);
   color: white;
 }
@@ -351,35 +358,34 @@ body {
   opacity: 0.25;
 }
 
-
 .alinhar {
-text-align: justify; 
-text-indent: 2em; 
-font-size: 16px; 
-margin-top: 20px;
-margin-left: 40px;
-margin-right: 40px;
+  text-align: justify;
+  text-indent: 2em;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .alinharcentro {
-text-align: center; 
-padding-left: 10px; 
-font-size: 16px
+  text-align: center;
+  padding-left: 10px;
+  font-size: 16px;
 }
 
 .justificar {
-text-align: justify
+  text-align: justify;
 }
 
 .historico {
-display: flex; 
-flex-wrap: wrap; 
-gap: 5px; 
-margin-top: 5px
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 5px;
 }
 
 .historicopes {
-font-weight: bold; 
-font-size: 20px; 
-color:#0f172a
+  font-weight: bold;
+  font-size: 20px;
+  color: #0f172a;
 }

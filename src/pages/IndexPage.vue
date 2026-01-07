@@ -9,12 +9,13 @@
       </div>
     </div>
 
-    <div class="layout-conteudo" style="display: flex; min-height: 80vh">
+    <div class="layout-conteudo">
       <div class="painel-esquerdo">
         <q-item
           clickable
           v-ripple
           :active="menuAtivo === 'home'"
+          class="menutop"
           active-class="menu-ativo"
           @click="
             () => {
@@ -34,6 +35,7 @@
           clickable
           v-ripple
           :active="menuAtivo === 'favoritos'"
+          class="menusep"
           active-class="menu-ativo"
           @click="
             () => {
@@ -52,6 +54,7 @@
           clickable
           v-ripple
           :active="menuAtivo === 'categorias'"
+          class="menusep"
           active-class="menu-ativo"
           @click="
             () => {
@@ -70,6 +73,7 @@
           clickable
           v-ripple
           :active="menuAtivo === 'configuracoes'"
+          class="menusep"
           active-class="menu-ativo"
           @click="
             () => {
@@ -88,6 +92,7 @@
           clickable
           v-ripple
           :active="menuAtivo === 'sobre'"
+          class="menusep"
           active-class="menu-ativo"
           @click="
             () => {
