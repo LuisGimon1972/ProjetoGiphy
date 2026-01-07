@@ -1,10 +1,12 @@
-                          🎬 ProjetoGiphy
+## Master Giphy Sistemas 🎁
 
-O ProjetoGiphy é uma aplicação web desenvolvida com Vue 3 e Quasar Framework v2, estruturada como uma Single Page Application (SPA) e integrada à API oficial do GIPHY para busca, navegação e exibição de GIFs animados. O projeto foi criado com foco em organização de código, reatividade, desempenho e experiência do usuário, utilizando a Composition API e o Vue Router para navegação fluida entre telas, sem recarregamento de página. O layout é personalizado, sem o uso do componente padrão <q-layout> do Quasar, oferecendo maior controle visual e estrutural.
+SG Master Gifts é um aplicativo web moderno que permite buscar, visualizar e favoritar GIFs animados de forma simples e divertida. Utilizando a API do GIPHY, o app entrega uma experiência leve, rápida e agradável, ideal para quem adora GIFs.
 
-                      🚀 Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
 Vue 3 (Composition API)
+
+TypeScript
 
 Quasar Framework v2
 
@@ -18,59 +20,56 @@ Vue Router
 
 API do GIPHY
 
-                     📦 Instalação das Dependências
+- Vue 3 – Framework progressivo para construção de interfaces.
+- Quasar Framework 2 – Framework baseado em Vue para criar aplicações responsivas e com ótimo desempenho.
+- Axios – Cliente HTTP para consumo da API do GIPHY.
+- Vue Router – Gerenciamento de rotas e navegação entre páginas.
+- LocalStorage – Armazenamento local dos favoritos, mantendo-os salvos mesmo após fechar o navegador.
 
-Para instalar as dependências do projeto, execute um dos comandos abaixo:
+## 📋 Funcionalidades
 
-yarn
+- Buscar GIFs por qualquer termo usando a API do GIPHY.
+- Ver os GIFs em alta (Trending).
+- Adicionar e remover GIFs dos favoritos com um clique.
+- Navegação entre as telas: Home, Favoritos, Categorias e Sobre.
+- Persistência de favoritos no navegador.
+- Interface responsiva com layout em painéis.
+- Configuração do sistema com a modalidade de trocar pra mod  
+  escuro.
 
-# or
+## 🧑‍💻 Sobre o Desenvolvedor
+
+Este aplicativo foi desenvolvido por o Dev. Luis Manuel Gimón, da Venezuela, com o objetivo de criar uma experiência simples e agradável para quem gosta de buscar e salvar GIFs animados. Utilizando a API do GIPHY, o app permite que você explore os GIFs mais populares do momento, faça buscas por qualquer tema e ainda salve seus favoritos para acessar quando quiser.
+
+A aplicação foi construída com Vue 3, Quasar Framework 2 e a Composition API (`<script setup>`). O Vue Router gerencia as rotas, e o armazenamento local garante que seus GIFs favoritos estejam sempre acessíveis.
+
+## 🚀 Como executar o projeto localmente
+
+### ✅ Pré-requisitos
+
+Antes de iniciar, instale:
+
+- [Node.js](https://nodejs.org/) (versão 18 ou superior recomendada)
+- [npm](https://www.npmjs.com/) ou [yarn](https://yarnpkg.com/)
+- [Quasar CLI](https://quasar.dev/start/installation)
+
+npm install -g @quasar/cli
+
+📦 Instalando as dependências
 
 npm install
 
-                  ▶️ Executar em modo de desenvolvimento
+# ou
 
-Inicia a aplicação em ambiente de desenvolvimento com hot-code reloading e relatórios de erro:
+yarn install
+
+🖥️ Rodando o projeto
 
 quasar dev
 
-                          🧹 Lint dos arquivos
+🖥️ Executar no navegador
 
-Executa a verificação de padrões e boas práticas do código:
+http://localhost:9000
 
-yarn lint
-
-# or
-
-npm run lint
-
-                        🎨 Formatação do código
-
-Formata automaticamente os arquivos do projeto conforme as regras definidas:
-
-yarn format
-
-# or
-
-npm run format
-
-                       🏗️ Build para produção
-
-Gera os arquivos otimizados para ambiente de produção:
-
-quasar build
-
-                  ⚙️ Customização da Configuração
-
-As configurações gerais do projeto, incluindo build, plugins e integração com o Vite, podem ser ajustadas no arquivo quasar.config.js.
-Mais informações estão disponíveis na documentação oficial do Quasar:
-
-👉 https://v2.quasar.dev/quasar-cli-vite/quasar-config-js
-
-                      🎯 Objetivo do Projeto
-
-O ProjetoGiphy foi desenvolvido com o objetivo de consolidar conhecimentos em Vue 3 e Quasar Framework, demonstrando habilidades em consumo de APIs REST, estruturação de aplicações SPA, componentização, reatividade e criação de interfaces modernas e responsivas. É um projeto ideal para fins educacionais e apresentação em portfólio profissional.
-
-                    📌 Considerações Finais
-
-Este projeto apresenta uma base sólida e bem estruturada, preparada para futuras evoluções como persistência em backend, autenticação de usuários, otimizações de performance e implementação de testes automatizados.
+🤝 Autor
+Desenvolvido por Luis Manuel Gimón

@@ -1,14 +1,30 @@
-# SG Master GIFs 🎁
+## Master Giphy Sistemas 🎁
 
 SG Master Gifts é um aplicativo web moderno que permite buscar, visualizar e favoritar GIFs animados de forma simples e divertida. Utilizando a API do GIPHY, o app entrega uma experiência leve, rápida e agradável, ideal para quem adora GIFs.
 
 ## 🛠️ Tecnologias Utilizadas
 
-- **Vue 3** – Framework progressivo para construção de interfaces.
-- **Quasar Framework 2** – Framework baseado em Vue para criar aplicações responsivas e com ótimo desempenho.
-- **Axios** – Cliente HTTP para consumo da API do GIPHY.
-- **Vue Router** – Gerenciamento de rotas e navegação entre páginas.
-- **LocalStorage** – Armazenamento local dos favoritos, mantendo-os salvos mesmo após fechar o navegador.
+Vue 3 (Composition API)
+
+TypeScript
+
+Quasar Framework v2
+
+JavaScript (ES6+)
+
+HTML5
+
+CSS3
+
+Vue Router
+
+API do GIPHY
+
+- Vue 3 – Framework progressivo para construção de interfaces.
+- Quasar Framework 2 – Framework baseado em Vue para criar aplicações responsivas e com ótimo desempenho.
+- Axios – Cliente HTTP para consumo da API do GIPHY.
+- Vue Router – Gerenciamento de rotas e navegação entre páginas.
+- LocalStorage – Armazenamento local dos favoritos, mantendo-os salvos mesmo após fechar o navegador.
 
 ## 📋 Funcionalidades
 
@@ -18,13 +34,14 @@ SG Master Gifts é um aplicativo web moderno que permite buscar, visualizar e fa
 - Navegação entre as telas: Home, Favoritos, Categorias e Sobre.
 - Persistência de favoritos no navegador.
 - Interface responsiva com layout em painéis.
+- Configuração do sistema com a modalidade de trocar pra mod  
+  escuro.
 
 ## 🧑‍💻 Sobre o Desenvolvedor
 
-Este aplicativo foi desenvolvido por o **Dev. Luis Manuel Gimón**, da Venezuela, com o objetivo de criar uma experiência simples e agradável para quem gosta de buscar e salvar GIFs animados. Utilizando a API do GIPHY, o app permite que você explore os GIFs mais populares do momento, faça buscas por qualquer tema e ainda salve seus favoritos para acessar quando quiser.
+Este aplicativo foi desenvolvido por o Dev. Luis Manuel Gimón, da Venezuela, com o objetivo de criar uma experiência simples e agradável para quem gosta de buscar e salvar GIFs animados. Utilizando a API do GIPHY, o app permite que você explore os GIFs mais populares do momento, faça buscas por qualquer tema e ainda salve seus favoritos para acessar quando quiser.
 
 A aplicação foi construída com Vue 3, Quasar Framework 2 e a Composition API (`<script setup>`). O Vue Router gerencia as rotas, e o armazenamento local garante que seus GIFs favoritos estejam sempre acessíveis.
-
 
 ## 🚀 Como executar o projeto localmente
 
@@ -41,7 +58,9 @@ npm install -g @quasar/cli
 📦 Instalando as dependências
 
 npm install
+
 # ou
+
 yarn install
 
 🖥️ Rodando o projeto
