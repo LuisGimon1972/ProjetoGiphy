@@ -168,6 +168,9 @@
                 <div class="absolute-top-right q-pa-xs">
                   <q-btn round dense size="md" color="dark" @click="toggleFavorito(gif)">
                     {{ isFavorito(gif.id) ? '💖' : '⚡' }}
+                    <q-tooltip>
+                      {{ isFavorito(gif.id) ? 'Retirar dos favoritos' : 'Adicionar aos favoritos' }}
+                    </q-tooltip>
                   </q-btn>
                 </div>
               </q-img>
@@ -199,6 +202,7 @@
                     @click="toggleFavorito(gif)"
                   >
                     💖
+                    <q-tooltip> Retirar dos favoritos </q-tooltip>
                   </q-btn>
                 </div>
               </div>
@@ -249,6 +253,11 @@
                   <div class="absolute-top-right q-pa-xs">
                     <q-btn round dense size="md" color="dark" @click="toggleFavorito(gif)">
                       {{ isFavorito(gif.id) ? '💖' : '⚡' }}
+                      <q-tooltip>
+                        {{
+                          isFavorito(gif.id) ? 'Retirar dos favoritos' : 'Adicionar aos favoritos'
+                        }}
+                      </q-tooltip>
                     </q-btn>
                   </div>
                 </div>
